@@ -1,0 +1,9 @@
+{pkgs,...}:{
+  services.sonarr={
+    enable=true;
+    openFirewall=true;
+  };
+  environment.systemPackages=[
+    pkgs.sonarr
+  ];
+  }

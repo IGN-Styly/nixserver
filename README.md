@@ -9,6 +9,7 @@ It also can displays errors nicely!
 - [x] Jellyfin
 - [x] Jellyseerr
 - [x] radarr
+- [x] Uptime Kuma
 - [ ] sonarr
 - [ ] Deluge
 - [x] AdGuard
