@@ -10,7 +10,7 @@ It also can displays errors nicely!
 - [x] Jellyseerr
 - [x] radarr
 - [x] Uptime Kuma
-- [ ] sonarr
+- [x] sonarr
 - [ ] Deluge
 - [x] AdGuard
 - [x] Vaultwarder
