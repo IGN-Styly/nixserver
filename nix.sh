@@ -1,4 +1,4 @@
-opts=$'Update\nPush\nRebuild\nTrim\nQuit\nEnable Containers\nDisable Containers'
+opts=$'Update\nPush\nRebuild\nTrim\nQuit\nEnable Containers\nDisable Containers\nArch Push'
 containers="/etc/nixos/containers"
 res=$( echo "$opts" | fzf -q "$1" --prompt "Choose an option: " | cat)
 if [ "$res" = "Quit" ]; then
@@ -55,5 +55,9 @@ if [ "$res" = "Disable Containers" ]; then
 done
 fi
 
-
+if [ "$res" = "Arch Push" ]; then
+  echo "Pushing to repo ..."
+  git commit -a 
+  git push
+fi
 
