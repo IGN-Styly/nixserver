@@ -1,0 +1,18 @@
+name: adguardhome
+services:
+    adguardhome:
+        container_name: adguardhome
+        restart: unless-stopped
+        volumes:
+            - /my/own/workdir:/opt/adguardhome/work
+            - /my/own/confdir:/opt/adguardhome/conf
+        ports:
+            - 53:53
+            - 67:67
+            - 68:68
+            - 443:443
+            - 3000:3000
+            - 853:853
+            - 5443:5443
+            - 6060:6060
+        image: adguard/adguardhome

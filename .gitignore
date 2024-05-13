@@ -1,0 +1,3 @@
+containers/*/**
+!containers/**/docker-compose.yml
+hardware-configuration.nix
