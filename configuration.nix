@@ -11,6 +11,7 @@
       ./media/jellyfin.nix
       ./media/jellyseerr.nix
       ./media/jackett.nix
+      ./gitea.nix
     ];
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   # Use the systemd-boot EFI boot loader.
