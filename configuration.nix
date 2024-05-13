@@ -64,6 +64,7 @@
      ];
    };
 virtualisation.docker.enable = true;
+virtualisation.docker.liveRestore = false;
   environment.systemPackages = with pkgs; [
 	neovim
   fzf
