@@ -7,7 +7,6 @@ fi
 
 if [ "$res" = "Update" ]; then
   git pull uorigin main
-  set -e 
   echo "NixOS Rebuilding ..."
   sudo nixos-rebuild switch &>nixos-switch.log || (cat nixos-switch.log|grep --color error && false)
 fi
