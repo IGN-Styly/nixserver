@@ -65,6 +65,7 @@
 virtualisation.docker.enable = true;
   environment.systemPackages = with pkgs; [
 	neovim
+  fzf
 	docker-compose
 	git
 ];
