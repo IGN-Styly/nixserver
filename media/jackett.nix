@@ -1,5 +1,5 @@
 {pkgs, ...}:{
-  services.jacket = {
+  services.jackett = {
     enable=true;
     openFirewall=true;
   };
