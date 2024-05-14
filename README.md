@@ -8,7 +8,7 @@ It also can displays errors nicely!
 ## Deployments 
 - [x] Jellyfin
 - [x] Jellyseerr
-- [x] radarr
+- [x] Jackett
 - [x] Uptime Kuma
 - [x] sonarr
 - [ ] Deluge
