@@ -8,7 +8,6 @@
   services.resolved={
     enable=true;
     dnssec = "true";
-    dnsovertls = "true";
   };
   imports =
     [ # Include the results of the hardware scan.
