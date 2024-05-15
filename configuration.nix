@@ -4,6 +4,7 @@
 
 { config, lib, pkgs, ... }:
 {
+  networking.nameservers = [ "192.168.122.37" ];
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
