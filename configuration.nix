@@ -4,7 +4,7 @@
 
 { config, lib, pkgs, ... }:
 {
-  networking.nameservers = [ "192.168.122.37" "1.1.1.1" ];
+  networking.nameservers = [ "192.168.122.37"];
   services.resolved={
     enable=true;
     dnssec = "true";
