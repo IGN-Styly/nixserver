@@ -4,12 +4,6 @@
 
 { config, lib, pkgs, ... }:
 {
-  networking.nameservers = [ "192.168.122.37"];
-  services.resolved={
-    enable=true;
-    extraConfig="[Resolve]\nDNSStubListener=no";
-  };
-  services.dnsmasq.enable=false;
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
