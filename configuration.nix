@@ -7,7 +7,7 @@
   networking.nameservers = [ "192.168.122.37"];
   services.resolved={
     enable=true;
-    dnssec = "true";
+    extraConfig="[Resolve]\nDNSStubListener=no";
   };
   imports =
     [ # Include the results of the hardware scan.
