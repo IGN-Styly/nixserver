@@ -12,10 +12,4 @@ services:
     ports:
       - 3001:3001  # <Host Port>:<Container Port>
     restart: always
-    networks:
-      - reverse_proxy
   
-networks:
-  reverse_proxy:
-    name: reverse_proxy
-    external: true

@@ -15,10 +15,4 @@ services:
       - ./homarr/data:/data
     ports:
       - '7575:7575'
-    networks:
-      - reverse_proxy
 
-  networks:
-  reverse_proxy:
-    name: reverse_proxy
-    external: true

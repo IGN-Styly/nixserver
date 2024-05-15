@@ -8,10 +8,4 @@ services:
         ports:
             - 7000:80
         image: vaultwarden/server:latest
-        networks:
-            - reverse_proxy
   
-networks:
-  reverse_proxy:
-    name: reverse_proxy
-    external: true

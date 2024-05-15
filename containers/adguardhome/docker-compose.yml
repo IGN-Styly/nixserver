@@ -6,8 +6,6 @@ services:
         volumes:
             - /my/own/workdir:/opt/adguardhome/work
             - /my/own/confdir:/opt/adguardhome/conf
-        networks:
-            - reverse_proxy
         ports:
             - 53:53
             - 67:67
@@ -18,8 +16,4 @@ services:
             - 5443:5443
             - 6060:6060
         image: adguard/adguardhome
-  networks:
-  reverse_proxy:
-    name: reverse_proxy
-    external: true
 
