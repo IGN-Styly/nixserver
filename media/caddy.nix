@@ -1,7 +1,7 @@
 {pkgs, ...}:{
   services.caddy = {
     enable=true;
-    globalConfig = ''
+   extraConfig = ''
 pki {
 ca master {
     name "T3 Labs CA"
