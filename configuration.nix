@@ -12,6 +12,7 @@
       ./media/jellyseerr.nix
       ./media/jackett.nix
       ./media/sonarr.nix
+      ./media/caddy.nix
     ];
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   # Use the systemd-boot EFI boot loader.
@@ -41,7 +42,7 @@
   # Enable the X11 windowing system.
   # services.xserver.enable = true;
 
-  
+
 
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";
@@ -122,4 +123,3 @@ virtualisation.docker.liveRestore = false;
   system.stateVersion = "23.11"; # Did you read the comment?
 
 }
-
