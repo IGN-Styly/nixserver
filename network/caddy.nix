@@ -1,4 +1,8 @@
-{ config, lib, pkgs,...}
 {
-    services.caddy.enable = true;
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
+  services.caddy.enable = true;
 }
