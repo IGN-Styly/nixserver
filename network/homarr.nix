@@ -6,6 +6,7 @@
       "/home/docker/homarr:./homarr/icons:/app/public/icons"
       "/home/docker/homarr:./homarr/data:/data"
     ];
-    ports=["7575:7575"];
+    ports=["7575:7575" "*:*"];
+
   };
 }
