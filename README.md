@@ -4,7 +4,7 @@ Also includes a simple bash script to be able to update/iterate over this cfg.
 ## Network:
   - [ ] caddy
   - [ ] adguard
-  - [ ] homarr
+  - [x] homarr
   - [ ] authelia
   - [ ] Gatus
   - [ ] vaultwarden
