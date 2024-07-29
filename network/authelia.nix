@@ -4,7 +4,7 @@
   ...
 }: {
   imports = [inputs.sops-nix.nixosModules.sops];
-  sops.defaultSopsFile = ./secrets/authelia.yaml;
+  sops.defaultSopsFile = ../secrets/authelia.yaml;
   sops.defaultSopsFormat = "yaml";
   sops.age.keyFile = "/home/styly/.ssh/keys.txt";
   sops.secrets."authelia/jwtSecret" = {owner = "authelia-main";};
