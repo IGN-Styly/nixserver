@@ -14,9 +14,9 @@ set -e
 
 # Edit your config
 $EDITOR configuration.nix
-
+sudo su
 # cd to your config dir
-pushd ~/dotfiles/nixos/
+pushd /etc/nixos
 
 # Early return if no changes were detected (thanks @singiamtel!)
 if git diff --quiet '*.nix'; then
@@ -39,9 +39,5 @@ sudo nixos-rebuild switch &>nixos-switch.log || (cat nixos-switch.log | grep --c
 
 # Get current generation metadata
 current=$(nixos-rebuild list-generations | grep current)
-
-# Commit all changes witih the generation metadata
-git commit -am "$current"
-
 # Back to where you were
 popd
