@@ -8,7 +8,7 @@
   ...
 }: {
   imports = [
-  ./network/network.nix
+    ./network/network.nix
   ];
   nix.settings.experimental-features = ["nix-command" "flakes"];
   # Use the systemd-boot EFI boot loader.
@@ -66,7 +66,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.styly = {
     isNormalUser = true;
-    extraGroups = ["wheel"]; # Enable ‘sudo’ for the user.
+    extraGroups = ["wheel" "docker"]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
       btop
     ];
@@ -78,6 +78,8 @@
     neovim
     fzf
     git
+    docker
+    docker-compose
   ];
   programs.gnupg.agent = {
     enable = true;
@@ -85,6 +87,5 @@
   };
   networking.firewall.enable = false;
   services.openssh.enable = true;
-
   system.stateVersion = "24.05"; # Did you read the comment?
 }
