@@ -7,7 +7,7 @@ case $base in
     "check") ./scripts/alejandra -c . ;;
     "format") ./scripts/alejandra . ;;
     "deploy") ./scripts/deploy.sh ;;
-    "rebuild") ./scripts/rebuild.sh ;;
+    "rebuild") sudo ./scripts/rebuild.sh ;;
     esac
 # For st instead
 # st -c fzf-menu -n fzf-menu -e bash -c "fzf-tmux -m $* < /proc/$$/fd/0 | awk 'BEGIN {ORS=\" \"} {print}' > /proc/$$/fd/1"

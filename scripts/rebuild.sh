@@ -14,7 +14,7 @@ set -e
 
 # Edit your config
 $EDITOR configuration.nix
-sudo su
+
 # cd to your config dir
 pushd /etc/nixos
 
