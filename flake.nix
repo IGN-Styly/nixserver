@@ -12,16 +12,16 @@
     let
         lib = nixpkgs.lib;
     in {
-    nixosConfigurations = {
-        nixos = lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-        disko.nixosModules.disko
-        ./configuration.nix
-        ./disko-config.nix
-        ./hardware-configuration.nix
-        ];
+        nixosConfigurations = {
+            nixos = lib.nixosSystem {
+                system = "x86_64-linux";
+                modules = [
+                    disko.nixosModules.disko
+                    ./configuration.nix
+                    ./disko-config.nix
+                    ./hardware-configuration.nix
+                    ];
+                };
+            };
         };
-    };
-    };
 }
