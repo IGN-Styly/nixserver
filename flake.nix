@@ -7,14 +7,14 @@
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
     #sops
-    inputs.sops-nix.url="github:Mic92/sops-nix";
+    sops-nix.url="github:Mic92/sops-nix";
   };
 
   outputs = {
     self,
     nixpkgs,
     disko,
-    inputs,
+    sops-nix,
     ...
   }: let
     lib = nixpkgs.lib;
