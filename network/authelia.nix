@@ -7,14 +7,12 @@
   sops.defaultSopsFile = ./secrets/authelia.yaml;
   sops.defaultSopsFormat = "yaml";
   sops.age.keyFile = "/home/styly/.ssh/keys.txt";
-  let name = "main";
-  let secretName = concatStrings ["authelia-" name];
-  sops.secrets."authelia/jwtSecret" = {owner = secretName;};
-  sops.secrets."authelia/sessionKey" = {owner = secretName;};
+  sops.secrets."authelia/jwtSecret" = {owner = "authelia-main";};
+  sops.secrets."authelia/sessionKey" = {owner = "authelia-main";};
   sops.secrets."authelia/storageKey" = {
-    owner = secretName;
+    owner = "authelia-main";
   };
-  services.authelia.instances.name = {
+  services.authelia.instances.main = {
     enable = true;
     secrets = {
       jwtSecretFile = /run/secrets/authelia/jwtSecret;
