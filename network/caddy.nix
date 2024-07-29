@@ -6,7 +6,7 @@
 }: {
   services.caddy = {
     enable = true;
-    virtualHosts."nix.lab".extraConfig = ''
+    virtualHosts."nixos.local".extraConfig = ''
       reverse_proxy http://192.168.122.37:7575
     '';
   };
