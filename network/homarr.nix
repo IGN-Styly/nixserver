@@ -6,7 +6,6 @@
       "./homarr/icons:/app/public/icons"
       "./homarr/data:/data"
     ];
-    ports=["7575:7575"];
-
+    ports = ["7575:7575"];
   };
 }

@@ -3,7 +3,7 @@ MVP(minimum viable product)
 Also includes a simple bash script to be able to update/iterate over this cfg.
 ## Network:
   - [ ] caddy
-  - [ ] adguard
+  - [x] adguard
   - [x] homarr
   - [ ] authelia
   - [ ] Gatus
