@@ -7,7 +7,7 @@
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
     #sops
-    inputs.sops-nix.url="github:Mic92/sops-nix"
+    inputs.sops-nix.url="github:Mic92/sops-nix";
   };
 
   outputs = {
@@ -20,7 +20,7 @@
   in {
     nixosConfigurations = {
       nixos = lib.nixosSystem {
-        specialArgs={inherit inputs;}
+        specialArgs={inherit inputs;};
         system = "x86_64-linux";
         modules = [
           disko.nixosModules.disko
