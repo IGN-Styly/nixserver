@@ -2,17 +2,26 @@
     description = "NixServer Flake";
 
     inputs= {
-        nixpkgs.url = "nixpkgs/nixos-24.05";
+        nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
+        # Disko
+        disko.url = "github:nix-community/disko";
+        disko.inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    outputs = {self,nixpkgs,...}:
+    outputs = {self,nixpkgs,disko,...}:
     let
         lib = nixpkgs.lib;
     in {
     nixosConfigurations = {
         nixos = lib.nixosSystem {
         system = "x86_64-linux";
-        modules = [ ./configuration.nix ];
+        modules = [
+        disko.nixosModules.disko
+        ./configuration.nix
+        ./configuration.nix
+        ./disko-config.nix
+        ./hardware-configuration.nix
+        ];
         };
     };
     };
