@@ -13,6 +13,7 @@
 set -e
 
 # Edit your config
+EDITOR=nvim
 $EDITOR configuration.nix
 
 # cd to your config dir
