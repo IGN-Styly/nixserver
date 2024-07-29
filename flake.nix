@@ -14,7 +14,7 @@
     self,
     nixpkgs,
     disko,
-    inputs
+    inputs,
     ...
   }: let
     lib = nixpkgs.lib;
