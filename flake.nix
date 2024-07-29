@@ -18,7 +18,6 @@
         modules = [
         disko.nixosModules.disko
         ./configuration.nix
-        ./configuration.nix
         ./disko-config.nix
         ./hardware-configuration.nix
         ];
