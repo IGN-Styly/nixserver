@@ -18,6 +18,13 @@
                 mountpoint = "/boot";
               };
             };
+            plainSwap={
+                size="4G";
+                content = {
+                    type="swap";
+                    discardPolicy = "both";
+                };
+            };
             root = {
               size = "100%";
               content = {
@@ -41,12 +48,6 @@
                   "/nix" = {
                     mountOptions = [ "compress=zstd" "noatime" ];
                     mountpoint = "/nix";
-                  };
-                  "/swap"={
-                    mountpoint = "./swapvol";
-                    swap = {
-                        swapfile.size="4G";
-                    };
                   };
                 };
 
