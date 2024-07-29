@@ -1,14 +1,18 @@
 # Edit this configuration file to define what should be installed on
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
-
-{ config, lib, pkgs, meta, ... }:
 {
-  imports =
-    [ # Include the results of the hardware scan.
+  config,
+  lib,
+  pkgs,
+  meta,
+  ...
+}: {
+  imports = [
+    # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    ];
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  ];
+  nix.settings.experimental-features = ["nix-command" "flakes"];
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -16,7 +20,7 @@
   networking.hostName = "nixos"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+  networking.networkmanager.enable = true; # Easiest to use and most distros use this by default.
 
   # Set your time zone.
   time.timeZone = "Europe/Portugal";
@@ -62,28 +66,27 @@
   # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-   users.users.styly = {
-     isNormalUser = true;
-     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
-     packages = with pkgs; [
-     btop
-     ];
-# mkpasswd -m sha512
-     hashedPassword = "$6$zyI9LBX/4MLXu2J0$pkdtrESkCzEFfytzXfCYaaatZRDMjbTkwEXVq2DiQg9ZY33jIMlrIjgysGj2LU6ROPYnfuAGycA1apJXmWCRo/";
-     openssh.authorizedKeys.keys=["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHQK+O1TOL2qDje6J/QyfyjdZXvVfx4h69HlVhZzMYUV styly@Archie"];
-   };
+  users.users.styly = {
+    isNormalUser = true;
+    extraGroups = ["wheel"]; # Enable ‘sudo’ for the user.
+    packages = with pkgs; [
+      btop
+    ];
+    # mkpasswd -m sha512
+    hashedPassword = "$6$zyI9LBX/4MLXu2J0$pkdtrESkCzEFfytzXfCYaaatZRDMjbTkwEXVq2DiQg9ZY33jIMlrIjgysGj2LU6ROPYnfuAGycA1apJXmWCRo/";
+    openssh.authorizedKeys.keys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHQK+O1TOL2qDje6J/QyfyjdZXvVfx4h69HlVhZzMYUV styly@Archie"];
+  };
   environment.systemPackages = with pkgs; [
-	neovim
-  fzf
-	git
-];
-   programs.gnupg.agent = {
-     enable = true;
-     enableSSHSupport = true;
-   };
+    neovim
+    fzf
+    git
+  ];
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+  };
   networking.firewall.enable = false;
   services.openssh.enable = true;
-
 
   system.stateVersion = "24.05"; # Did you read the comment?
 }
