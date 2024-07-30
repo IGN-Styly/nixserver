@@ -13,7 +13,7 @@
   options = {
     secrets = {
       authelia = {
-        jwtSecretFile = sops.secrets."jwtSecret".path;
+        jwtSecretFile = inputs.sops.nixosModules.sops.secrets."jwtSecret".path;
         sessionSecretFile = sops.secrets."sessionKey".path;
         storageEncryptionKeyFile = sops.secrets."storageKey".path;
       };
