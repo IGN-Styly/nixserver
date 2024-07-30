@@ -15,14 +15,14 @@
       autheliaSecrets = {
         owner = concatStrings ["authelia-" config.authelia.nodename];
         sopsFile = lib.mkOption {
-          default=../secrets/authelia.yaml
-          description="The path to the secret file."
+          default=../secrets/authelia.yaml;
+          description="The path to the secret file.";
           type=lib.types.path;
         };
         format = lib.mkOption{
             type=lib.types.enum [ "yaml" "json" "binary" "ini" "dotenv" ];
-            description="the file type."
-            default="yaml"
+            description="the file type.";
+            default="yaml";
         };
       };
     };
