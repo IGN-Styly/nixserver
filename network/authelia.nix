@@ -8,9 +8,9 @@
   sops.defaultSopsFile = ../secrets/authelia.yaml;
   sops.defaultSopsFormat = "yaml";
   sops.age.keyFile = "/home/styly/.ssh/keys.txt";
-  sops.secrets."authelia/jwtSecret" = {owner = "authelia-main";};
-  sops.secrets."authelia/sessionKey" = {owner = "authelia-main";};
-  sops.secrets."authelia/storageKey" = {
+  sops.secrets."jwtSecret" = {owner = "authelia-main";};
+  sops.secrets."sessionKey" = {owner = "authelia-main";};
+  sops.secrets."storageKey" = {
     owner = "authelia-main";
   };
   services.authelia.instances.main = {
