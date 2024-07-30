@@ -10,7 +10,7 @@
   sops.secrets."sessionKey" = config.authelia.autheliaSecrets;
   sops.secrets."storageKey" = config.authelia.autheliaSecrets;
 
-  options = {
+  config = {
     secrets = {
       authelia = {
         jwtSecretFile = inputs.sops.nixosModules.sops.secrets."jwtSecret".path;
