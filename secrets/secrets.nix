@@ -7,7 +7,7 @@
   imports = [inputs.sops-nix.nixosModules.sops];
   config = {
     sops = {
-      defaultSopsFile = "./secrets.yaml";
+      defaultSopsFile = ./secrets.yaml;
       defaultSopsFormat = "yaml";
       age = {
         # This is the default AGE key that will be used for bootstrapping the system
