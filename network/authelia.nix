@@ -16,9 +16,9 @@
   services.authelia.instances.main = {
     enable = true;
     secrets = {
-      jwtSecretFile = config.sops.secrets."authelia/jwtSecret".path;
-      storageEncryptionKeyFile = config.sops.secrets."authelia/sessionKey".path;
-      sessionSecretFile = config.sops.secrets."authelia/storageKey".path;
+      jwtSecretFile = config.sops.secrets."jwtSecret".path;
+      storageEncryptionKeyFile = config.sops.secrets."sessionKey".path;
+      sessionSecretFile = config.sops.secrets."storageKey".path;
     };
     settings = {
       theme = "dark";
