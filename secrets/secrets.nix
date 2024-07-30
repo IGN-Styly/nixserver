@@ -11,7 +11,7 @@
       defaultSopsFormat = "yaml";
       age = {
         # This is the default AGE key that will be used for bootstrapping the system
-        keyFile = "/root/age/age-key.txt";
+        keyFile = "/root/age/key.txt";
         # This will automatically import SSH host keys as AGE keys
         # sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
       };
