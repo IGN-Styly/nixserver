@@ -1,6 +1,7 @@
 {
   pkgs,
   inputs,
+  config,
   ...
 }: {
   imports = [inputs.sops-nix.nixosModules.sops];
@@ -15,9 +16,9 @@
   services.authelia.instances.main = {
     enable = true;
     secrets = {
-      jwtSecretFile = /run/secrets/authelia/jwtSecret;
-      storageEncryptionKeyFile = /run/secrets/authelia/storageKey;
-      sessionSecretFile = /run/secrets/authelia/sessionKey;
+      jwtSecretFile = config.sops.secrets."authelia/jwtSecret".path;
+      storageEncryptionKeyFile = config.sops.secrets."authelia/sessionKey".path;
+      sessionSecretFile = config.sops.secrets."authelia/storageKey".path;
     };
     settings = {
       theme = "dark";
