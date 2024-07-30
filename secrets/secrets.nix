@@ -14,8 +14,8 @@
     secrets = {
       authelia = {
         jwtSecretFile = inputs.sops.nixosModules.sops.secrets."jwtSecret".path;
-        sessionSecretFile = sops.secrets."sessionKey".path;
-        storageEncryptionKeyFile = sops.secrets."storageKey".path;
+        sessionSecretFile = inputs.sops.nixosModules.sops.secrets."sessionKey".path;
+        storageEncryptionKeyFile = inputs.sops.nixosModules.sops.secrets."storageKey".path;
       };
     };
   };
