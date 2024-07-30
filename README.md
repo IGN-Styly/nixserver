@@ -18,3 +18,7 @@ Also includes a simple bash script to be able to update/iterate over this cfg.
 ## Development
   - [ ] Gitea
   - [ ] Coolify
+# TODO
+- [ ] Add All modules
+- [ ] Modularize secrets
+- [ ] Modularize uri
