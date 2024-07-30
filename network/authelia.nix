@@ -15,7 +15,6 @@
   };
   services.authelia.instances.main = {
     enable = true;
-    secrets.manual=true;
     secrets = {
       jwtSecretFile = config.sops.secrets."jwtSecret".path;
       storageEncryptionKeyFile = config.sops.secrets."sessionKey".path;
