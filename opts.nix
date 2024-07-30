@@ -13,7 +13,7 @@
         type = lib.types.string;
       };
       autheliaSecrets = {
-        owner = concatStrings ["authelia-",config.authelia.nodename];
+        owner = concatStrings ["authelia-" config.authelia.nodename];
         sopsFile = lib.mkOption {
           default=../secrets/authelia.yaml
           description="The path to the secret file."
