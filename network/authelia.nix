@@ -15,11 +15,12 @@
   };
   services.authelia.instances.main = {
     enable = true;
-    secrets = {
-      jwtSecretFile = config.sops.secrets."jwtSecret".path;
-      storageEncryptionKeyFile = config.sops.secrets."sessionKey".path;
-      sessionSecretFile = config.sops.secrets."storageKey".path;
-    };
+    secrets = with config.sops; {
+                    jwtSecretFile = secrets."jwtSecret".path;
+                    sessionSecretFile = secrets."sessionKey".path;
+                    storageEncryptionKeyFile = secrets."storageKey".path;
+                };
+
     settings = {
       theme = "dark";
       default_redirection_url = "https://nixos.lab";
