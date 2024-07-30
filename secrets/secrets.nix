@@ -1,38 +1,18 @@
 {
-  pkgs,
   config,
   inputs,
   lib,
   ...
 }: {
-  imports = [<sops-nix/modules/sops>];
-  sops.age.keyFile = "/root/age/keys.txt";
-  sops.secrets."jwtSecret" = config.authelia.autheliaSecrets;
-  sops.secrets."sessionKey" = config.authelia.autheliaSecrets;
-  sops.secrets."storageKey" = config.authelia.autheliaSecrets;
-
-  options = {
-    secrets = {
-      authelia = {
-        jwtSecretFile = {
-          description = "path to the jwtsecret file";
-          default = "/";
-          type = lib.types.path;
-        };
-        sessionSecretFile = {
-          description = "path to the jwtsecret file";
-          default = "/";
-          type = lib.types.path;
-        };
-        storageEncryptionKeyFile = {
-          description = "path to the jwtsecret file";
-          default = "/";
-          type = lib.types.path;
-        };
-      };
+  imports = [inputs.sops-nix.nixosModules.sops];
+  config = {
+    defaultSopsFile = "./secrets.yaml";
+    defaultSopsFormat = "yaml";
+    age = {
+      # This is the default AGE key that will be used for bootstrapping the system
+      keyFile = "/root/age/age-key.txt";
+      # This will automatically import SSH host keys as AGE keys
+      # sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
     };
   };
-  config.secrets.authelia.jwtSecretFile = inputs.sops.nixosModules.sops.secrets."jwtSecret".path;
-  config.secrets.authelia.sessionSecretFile = inputs.sops.nixosModules.sops.secrets."sessionKey".path;
-  config.secrets.authelia.storageEncryptionKeyFile = inputs.sops.nixosModules.sops.secrets."storageKey".path;
 }
