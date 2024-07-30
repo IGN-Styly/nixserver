@@ -8,6 +8,8 @@
   ...
 }: {
   imports = [
+    ./opts.nix
+    ./secrets/secrets.nix
     ./network/network.nix
   ];
   nix.settings.experimental-features = ["nix-command" "flakes"];
