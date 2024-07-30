@@ -2,6 +2,7 @@
   pkgs,
   config,
   inputs,
+  lib,
   ...
 }: {
   imports = [<sops-nix/modules/sops>];
@@ -10,12 +11,25 @@
   sops.secrets."sessionKey" = config.authelia.autheliaSecrets;
   sops.secrets."storageKey" = config.authelia.autheliaSecrets;
 
-  config = {
+  options = {
     secrets = {
       authelia = {
-        jwtSecretFile = inputs.sops.nixosModules.sops.secrets."jwtSecret".path;
-        sessionSecretFile = inputs.sops.nixosModules.sops.secrets."sessionKey".path;
-        storageEncryptionKeyFile = inputs.sops.nixosModules.sops.secrets."storageKey".path;
+        jwtSecretFile = {
+          description = "path to the jwtsecret file";
+          default = inputs.sops.nixosModules.sops.secrets."jwtSecret".path;
+          type = lib.types.path;
+        };
+        sessionSecretFile = {
+          description = "path to the jwtsecret file";
+          default = inputs.sops.nixosModules.sops.secrets."sessionKey".path;
+          type = lib.types.path;
+        };
+
+        storageEncryptionKeyFile = {
+          description = "path to the jwtsecret file";
+          default = inputs.sops.nixosModules.sops.secrets."storageKey".path;
+          type = lib.types.path;
+        };
       };
     };
   };
