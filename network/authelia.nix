@@ -4,9 +4,7 @@
   config,
   ...
 }: {
-
   services.authelia.instances.main = {
-    server.endpoints.authz.forward-auth.implementation = "ForwardAuth";
     enable = true;
     secrets = with config.sops; {
       jwtSecretFile = secrets."jwtSecret".path;
@@ -15,6 +13,7 @@
     };
 
     settings = {
+      server.endpoints.authz.forward-auth.implementation = "ForwardAuth";
       theme = "dark";
       default_redirection_url = "https://nixos.lab";
 
