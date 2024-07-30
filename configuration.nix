@@ -8,7 +8,6 @@
   ...
 }: {
   imports = [
-    ./opts.nix
     ./secrets/secrets.nix
     ./network/network.nix
   ];
