@@ -4,6 +4,11 @@
   config,
   ...
 }: {
+  sops.secrets = {
+    "jwtSecret".owner = "authelia-main";
+    "sessionKey".owner = "authelia-main";
+    "storageKey".owner = "authelia-main";
+  };
   services.authelia.instances.main = {
     enable = true;
     secrets = with config.sops; {
