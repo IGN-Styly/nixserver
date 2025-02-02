@@ -4,8 +4,8 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
     # Disko
-    disko.url = "github:nix-community/disko";
-    disko.inputs.nixpkgs.follows = "nixpkgs";
+    # disko.url = "github:nix-community/disko";
+    # disko.inputs.nixpkgs.follows = "nixpkgs";
     #sops
     sops-nix.url = "github:Mic92/sops-nix";
   };
@@ -26,7 +26,7 @@
         modules = [
           disko.nixosModules.disko
           ./configuration.nix
-          ./disko-config.nix
+          #./disko-config.nix
           ./hardware-configuration.nix
         ];
       };
