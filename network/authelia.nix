@@ -18,7 +18,6 @@
     };
 
     settings = {
-      server.endpoints.authz.forward-auth.implementation = "ForwardAuth";
       theme = "dark";
       default_redirection_url = "https://nixos.lab";
       access_control = {
@@ -38,6 +37,7 @@
           }
         ];
       };
+      server.endpoints.authz.forward-auth.implementation = "ForwardAuth";
       #settingsFiles = [ ./oidc_clients.yaml ];
       server = {
         host = "127.0.0.1";
