@@ -13,10 +13,9 @@
   outputs = {
     self,
     nixpkgs,
-    disko,
     sops-nix,
     ...
-  } @ inputs: let
+  } @inputs: let
     lib = nixpkgs.lib;
   in {
     nixosConfigurations = {
@@ -24,10 +23,11 @@
         specialArgs = {inherit inputs;};
         system = "x86_64-linux";
         modules = [
-          disko.nixosModules.disko
+          #disko.nixosModules.disko
           ./configuration.nix
           #./disko-config.nix
           ./hardware-configuration.nix
+          sops-nix.nixosModules.sops
         ];
       };
     };
