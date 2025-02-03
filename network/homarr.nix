@@ -10,11 +10,7 @@
   };
 
   # Enable container name DNS for all Podman networks.
-  networking.firewall.interfaces = let
-    matchAll = if !config.networking.nftables.enable then "podman+" else "podman*";
-  in {
-    "${matchAll}".allowedUDPPorts = [ 54 ];
-  };
+
 
   virtualisation.oci-containers.backend = "podman";
 

@@ -1,3 +1,7 @@
+# To setup user you must manually edit the file /var/lib/authelia-main/users_database.yml
+# and to hash the password you can use the following command:
+# `authelia crypto hash generate argon2`
+
 {
   config,
   inputs,
@@ -13,20 +17,94 @@
   services.authelia.instances.main = {
     enable = true;
     settings = {
+        totp.issuer = "authelia.com";
+        # session = {
+        #           cookies = [{
+        #             authelia_url = "https://auth.nixie.org";
+        #             default_redirection_url = "https://homarr.nixie.org";
+        #           }];
+        # };
         server = {
+          endpoints = {
+                authz = {
+                  forward-auth = {
+                    implementation = "ForwardAuth";
+                    authn_strategies = [
+                      {
+                        name = "HeaderAuthorization";
+                        schemes = [
+                          "Basic"
+                        ];
+                      }
+                      {
+                        name = "CookieSession";
+                      }
+                    ];
+                  };
+                  ext-authz = {
+                    implementation = "ExtAuthz";
+                    authn_strategies = [
+                      {
+                        name = "HeaderAuthorization";
+                        schemes = [
+                          "Basic"
+                        ];
+                      }
+                      {
+                        name = "CookieSession";
+                      }
+                    ];
+                  };
+                  auth-request = {
+                    implementation = "AuthRequest";
+                    authn_strategies = [
+                      {
+                        name = "HeaderAuthorization";
+                        schemes = [
+                          "Basic"
+                        ];
+                      }
+                      {
+                        name = "CookieSession";
+                      }
+                    ];
+                  };
+                  legacy = {
+                    implementation = "Legacy";
+                    authn_strategies = [
+                      {
+                        name = "HeaderLegacy";
+                      }
+                      {
+                        name = "CookieSession";
+                      }
+                    ];
+                  };
+                };
+              };
             host = "127.0.0.1"; # change to box ip
             port = 9091;
         };
-        default_redirection_url = "https://auth.nixie.org";
+        default_redirection_url = "https://homarr.nixie.org";
         theme = "dark";
         default_2fa_method = "totp";
         log.level = "debug";
         #server.disable_healthcheck = true;
         authentication_backend.file.path = "/var/lib/authelia-main/users_database.yml";
-        access_control.default_policy = "one_factor";
         session.domain = "nixie.org";
         storage.local.path = "/var/lib/authelia-main/db.sqlite3";
         notifier.filesystem.filename = "/var/lib/authelia-main/notifications.txt";
+
+
+        access_control = {
+          default_policy = "deny";
+          rules = [
+            {
+              domain = "*.nixie.org";
+              policy = "one_factor";
+            }
+          ];
+        };
     };
   };
 }
