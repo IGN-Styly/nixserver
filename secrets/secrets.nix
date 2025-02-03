@@ -4,14 +4,24 @@
   lib,
   ...
 }: {
-  imports = [inputs.sops-nix.nixosModules.sops];
-  config = {
+
+config = {
     sops = {
+      secrets = {
+        jwtSecret = {
+          sopsFile = ./secrets.yaml;
+          owner = ''authelia-main'';
+        };
+        cryptKey = {
+            sopsFile = ./secrets.yaml;
+            owner = ''authelia-main'';
+        };
+      };
       defaultSopsFile = ./secrets.yaml;
       defaultSopsFormat = "yaml";
       age = {
         # This is the default AGE key that will be used for bootstrapping the system
-        keyFile = "/root/age/keys.txt";
+        keyFile = "/home/styly/.config/sops/age/keys.txt";
         # This will automatically import SSH host keys as AGE keys
         # sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
       };

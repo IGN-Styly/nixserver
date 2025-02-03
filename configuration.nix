@@ -86,7 +86,6 @@
     enable = true;
     enableSSHSupport = true;
   };
-  virtualisation.oci-containers.backend = "docker";
   networking.firewall.enable = false;
   services.openssh.enable = true;
   system.stateVersion = "24.05"; # Did you read the comment?
