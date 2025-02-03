@@ -17,14 +17,29 @@
   services.authelia.instances.main = {
     enable = true;
     settings = {
+      session = {
+          secret = "insecure_session_secret";
+          name = "authelia_session";
+          same_site = "lax";
+          inactivity = "5m";
+          expiration = "1h";
+          remember_me = "1M";
+          cookies = [
+            {
+              domain = "nixie.org";
+              authelia_url = "https://auth.nixie.org";
+              default_redirection_url = "https://homarr.nixie.org";
+              name = "authelia_session";
+              same_site = "lax";
+              inactivity = "5m";
+              expiration = "1h";
+              remember_me = "1d";
+            }
+          ];
+        };
         totp.issuer = "authelia.com";
-        # session = {
-        #           cookies = [{
-        #             authelia_url = "https://auth.nixie.org";
-        #             default_redirection_url = "https://homarr.nixie.org";
-        #           }];
-        # };
         server = {
+          address = "127.0.0.1:9091"; # change to box ip
           endpoints = {
                 authz = {
                   forward-auth = {
@@ -82,8 +97,7 @@
                   };
                 };
               };
-            host = "127.0.0.1"; # change to box ip
-            port = 9091;
+
         };
         default_redirection_url = "https://homarr.nixie.org";
         theme = "dark";

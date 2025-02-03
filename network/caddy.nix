@@ -26,7 +26,7 @@
         extraConfig = ''
           reverse_proxy 127.0.0.1:7575
          	tls internal
-          forward_auth authelia:9091 {
+          forward_auth 127.0.0.1:9091 {
                           uri /api/authz/forward-auth
                           ## The following commented line is for configuring the Authelia URL in the proxy. We strongly suggest
                           ## this is configured in the Session Cookies section of the Authelia configuration.
@@ -39,7 +39,7 @@
         extraConfig = ''
           reverse_proxy 127.0.0.1:3000
          	tls internal
-          forward_auth authelia:9091 {
+          forward_auth 127.0.0.1:9091 {
                           uri /api/authz/forward-auth
                           ## The following commented line is for configuring the Authelia URL in the proxy. We strongly suggest
                           ## this is configured in the Session Cookies section of the Authelia configuration.
