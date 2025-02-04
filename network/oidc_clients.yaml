@@ -1,11 +1,16 @@
 identity_providers:
   oidc:
+    jwks:
+      - key_id: 'authelia'
+        algorithm: 'RS256'
+        use: 'sig'
+        key: {{ secret "/run/secrets/pKey" | mindent 10 "|" | msquote }}
     ## The other portions of the mandatory OpenID Connect 1.0 configuration go here.
     ## See: https://www.authelia.com/c/oidc
     clients:
       - client_id: {{ secret "/run/secrets/homarrID" | mindent 10 "|" | msquote }}
         client_name: 'Homarr'
-        client_secret: {{ secret "/run/secrets/homarrSecret" | mindent 10 "|" | msquote }}
+        client_secret: {{ secret "/run/secrets/homarrSecretHashed" | mindent 10 "|" | msquote }}
         public: false
         authorization_policy: 'one_factor'
         redirect_uris:

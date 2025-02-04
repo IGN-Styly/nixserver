@@ -15,8 +15,10 @@
   services.authelia.instances.main.secrets.jwtSecretFile = config.sops.secrets."jwtSecret".path;
   services.authelia.instances.main.secrets.storageEncryptionKeyFile = config.sops.secrets."cryptKey".path;
   services.authelia.instances.main = {
+    group = "keys";
     enable = true;
     settingsFiles = [ ./oidc_clients.yaml ];
+    environmentVariables = {"X_AUTHELIA_CONFIG_FILTERS"="template";};
     settings = {
       session = {
           secret = "insecure_session_secret";

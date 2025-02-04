@@ -14,10 +14,9 @@
   users.users.homarr = {
     isSystemUser = true;
     home = "/var/lib/homarr";
-    group = "homarr";
+    group = "keys";
     createHome = true;
   };
-  users.groups.homarr = {};
 
   # Enable container name DNS for all Podman networks.
 

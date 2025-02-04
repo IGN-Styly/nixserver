@@ -9,21 +9,29 @@ config = {
     sops = {
       secrets = {
         jwtSecret = {
-          owner = ''authelia-main'';
+          group="keys";
+          mode="0777";
         };
         cryptKey = {
-            owner = ''authelia-main'';
+          mode="0777";
+          group="keys";
         };
         homarrSecret = {
-            owner = ''homarr'';
+          mode="0777";
+          group="keys";
         };
         homarrID = {
-            owner = ''homarr'';
+          mode="0777";
+          group="keys";
         };
         homarrSecretHashed = {
-            owner = ''homarr'';
+          mode="0777";
+          group="keys";
         };
+        pKey = {
 
+          group="keys";
+        };
       };
       defaultSopsFile = ./secrets.yaml;
       defaultSopsFormat = "yaml";
