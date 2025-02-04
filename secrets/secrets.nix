@@ -9,21 +9,21 @@ config = {
     sops = {
       secrets = {
         jwtSecret = {
-          sopsFile = ./secrets.yaml;
           owner = ''authelia-main'';
         };
         cryptKey = {
-            sopsFile = ./secrets.yaml;
             owner = ''authelia-main'';
         };
-        oidcSecret = {
-            sopsFile = ./secrets.yaml;
+        homarrSecret = {
             owner = ''homarr'';
         };
-        oidcKey = {
-            sopsFile = ./secrets.yaml;
-            owner = ''authelia-main'';
+        homarrID = {
+            owner = ''homarr'';
         };
+        homarrSecretHashed = {
+            owner = ''homarr'';
+        };
+
       };
       defaultSopsFile = ./secrets.yaml;
       defaultSopsFormat = "yaml";
