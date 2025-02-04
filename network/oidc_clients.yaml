@@ -15,5 +15,3 @@ identity_providers:
           - 'profile'
           - 'groups'
           - 'email'
-        require_pkce: true
-        pkce_challenge_method: "S256"
