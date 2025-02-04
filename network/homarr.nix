@@ -9,6 +9,16 @@
     dockerCompat = true;
   };
 
+
+  # Create the User
+  users.users.homarr = {
+    isSystemUser = true;
+    home = "/var/lib/homarr";
+    group = "homarr";
+    createHome = true;
+  };
+  users.groups.homarr = {};
+
   # Enable container name DNS for all Podman networks.
 
 
@@ -19,6 +29,14 @@
     image = "ghcr.io/homarr-labs/homarr:latest";
     environment = {
       "SECRET_ENCRYPTION_KEY" = "9b8bb4ade1712fef1dcb5cbaea2c0e8d253377c4376e62be4ee93e387cdbf89e";
+      "AUTH_PROVIDER" = "oidc";
+      "AUTH_OIDC_URI" = "https://auth.nixie.org";
+      "AUTH_OIDC_CLIENT_SECRET" = config.sops.secrets.oidcSecret.path;
+      "AUTH_OIDC_CLIENT_ID" = "K20Km6uT4oS2qQmds7zo89EnjGIM-aEKpb0ficIb43J-xkmYE5ANu1gKCuUPYz5OtvyfgKvx";
+      "AUTH_OIDC_CLIENT_NAME"="Authelia";
+      "AUTH_OIDC_ADMIN_GROUP"="homarr-admins";
+      "AUTH_OIDC_OWNER_GROUP"="homarr-owners";
+      "NEXTAUTH_URL"="https://homarr.nixie.org";
     };
     volumes = [
       "/home/styly/homarr/appdata:/appdata:rw"
@@ -34,6 +52,7 @@
   };
   systemd.services."podman-homarr" = {
     serviceConfig = {
+      User = "homarr";
       Restart = lib.mkOverride 90 "always";
     };
     after = [

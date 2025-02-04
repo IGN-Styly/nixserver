@@ -16,6 +16,14 @@ config = {
             sopsFile = ./secrets.yaml;
             owner = ''authelia-main'';
         };
+        oidcSecret = {
+            sopsFile = ./secrets.yaml;
+            owner = ''homarr'';
+        };
+        oidcKey = {
+            sopsFile = ./secrets.yaml;
+            owner = ''authelia-main'';
+        };
       };
       defaultSopsFile = ./secrets.yaml;
       defaultSopsFormat = "yaml";

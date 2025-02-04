@@ -2,10 +2,10 @@
 MVP(minimum viable product)
 Also includes a simple bash script to be able to update/iterate over this cfg.
 ## Network:
-  - [ ] caddy
+  - [x] caddy // Still Mising other services
   - [ ] adguard
   - [ ] homarr
-  - [ ] authelia
+  - [x] authelia
   - [ ] Gatus
   - [ ] vaultwarden
 ## Media

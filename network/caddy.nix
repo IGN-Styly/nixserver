@@ -22,6 +22,12 @@
 
     # '';
     virtualHosts = {
+      "nixie.org" = {
+        extraConfig = ''
+          redir https://homarr.nixie.org
+          tls internal
+        '';
+      };
       "homarr.nixie.org" = {
         extraConfig = ''
           reverse_proxy 127.0.0.1:7575
