@@ -99,7 +99,6 @@
               };
 
         };
-        default_redirection_url = "https://homarr.nixie.org";
         theme = "dark";
         default_2fa_method = "totp";
         log.level = "debug";
