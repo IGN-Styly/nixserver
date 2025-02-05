@@ -4,5 +4,5 @@
   pkgs,
   ...
 }: {
-  services.jackett.enable = true;
+  services.prowlarr.enable = true;
 }
