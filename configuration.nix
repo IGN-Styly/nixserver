@@ -11,6 +11,7 @@
     ./secrets/secrets.nix
     ./network/network.nix
     ./dev/nh.nix
+    ./config.nix
   ];
   nix.settings.experimental-features = ["nix-command" "flakes"];
   # Use the systemd-boot EFI boot loader.
@@ -64,7 +65,6 @@
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.styly = {
     isNormalUser = true;

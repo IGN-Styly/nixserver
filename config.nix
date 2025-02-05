@@ -4,6 +4,9 @@
   pkgs,
   ...
 }:{
-  config.nixserver.email = "claudiotorresptpt@gmail.com";
-  config.nixserver.displayname = "Styly";
+  imports = [./nixserver.nix];
+  config.nixserver = {
+    email = "claudiotorresptpt@gmail.com";
+    displayname = "Styly";
+  };
 }

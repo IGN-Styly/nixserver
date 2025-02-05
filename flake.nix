@@ -25,6 +25,7 @@
           #disko.nixosModules.disko
           ./configuration.nix
           #./disko-config.nix
+          ./config.nix
           ./hardware-configuration.nix
           inputs.sops-nix.nixosModules.sops
         ];

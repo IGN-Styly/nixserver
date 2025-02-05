@@ -12,6 +12,8 @@
   environment.systemPackages = with pkgs; [
     authelia
   ];
+  config.nixserver.email = "claudiotorresptpt@gmail.com";
+  config.nixserver.displayname = "Styly";
   services.authelia.instances.main.secrets.jwtSecretFile = config.sops.secrets."jwtSecret".path;
   services.authelia.instances.main.secrets.storageEncryptionKeyFile = config.sops.secrets."cryptKey".path;
   services.authelia.instances.main = {
@@ -106,7 +108,7 @@
         default_2fa_method = "totp";
         log.level = "debug";
         #server.disable_healthcheck = true;
-        authentication_backend.file.path = "/var/lib/authelia-main/users_database.yml";
+        authentication_backend.file.path = config.sops.templates."authelia.yaml".path;
         storage.local.path = "/var/lib/authelia-main/db.sqlite3";
         notifier.filesystem.filename = "/var/lib/authelia-main/notifications.txt";
 
