@@ -11,8 +11,8 @@ config = {
         "homarr.env" = {
           mode = "0777";
           content = ''
-          AUTH_OIDC_CLIENT_SECRET = ${config.sops.placeholder.homarrSecret}
-          AUTH_OIDC_CLIENT_ID = ${config.sops.placeholder.homarrID}
+          AUTH_OIDC_CLIENT_SECRET=${config.sops.placeholder.homarrSecret}
+          AUTH_OIDC_CLIENT_ID=${config.sops.placeholder.homarrID}
           '';
         };
       };
