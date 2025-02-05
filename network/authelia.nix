@@ -125,12 +125,28 @@
 
         access_control = {
           default_policy = "deny";
+          networks = [
+            {
+              name = "internal";
+              networks = [
+                "127.0.0.1/8"
+                ];
+            }
+          ];
           rules = [
+            {
+              domain = "*.nixie.org";
+              policy = "bypass";
+              networks = [
+                "internal"
+              ];
+            }
             {
               domain = "*.nixie.org";
               policy = "one_factor";
             }
           ];
+
         };
     };
   };

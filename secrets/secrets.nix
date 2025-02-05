@@ -7,6 +7,15 @@
 
 config = {
     sops = {
+      templates = {
+        "homarr.env" = {
+          mode = "0777";
+          content = ''
+          AUTH_OIDC_CLIENT_SECRET = ${config.sops.placeholder.homarrSecret}
+          AUTH_OIDC_CLIENT_ID = ${config.sops.placeholder.homarrID}
+          '';
+        };
+      };
       secrets = {
         jwtSecret = {
           group="keys";
@@ -29,7 +38,7 @@ config = {
           group="keys";
         };
         pKey = {
-
+          owner="authelia-main";
           group="keys";
         };
       };

@@ -20,7 +20,7 @@
 
   # Enable container name DNS for all Podman networks.
 
-
+  networking.nameservers = [ "::1" "127.0.0.1" "1.1.1.1"];
   virtualisation.oci-containers.backend = "podman";
 
   # Containers
@@ -28,15 +28,16 @@
     image = "ghcr.io/homarr-labs/homarr:latest";
     environment = {
       "SECRET_ENCRYPTION_KEY" = "9b8bb4ade1712fef1dcb5cbaea2c0e8d253377c4376e62be4ee93e387cdbf89e";
-      "AUTH_PROVIDER" = "oidc";
-      "AUTH_OIDC_URI" = "https://auth.nixie.org";
-      "AUTH_OIDC_CLIENT_SECRET" = "cat ${config.sops.secrets.homarrSecret.path}";
-      "AUTH_OIDC_CLIENT_ID" = "cat ${config.sops.secrets.homarrID.path}";
+      "AUTH_PROVIDERS" = "oidc";
+      "AUTH_OIDC_ISSUER" = "https://auth.nixie.org";
       "AUTH_OIDC_CLIENT_NAME"="Authelia";
+      "AUTH_OIDC_AUTO_LOGIN"= "true";
       "AUTH_OIDC_ADMIN_GROUP"="homarr-admins";
       "AUTH_OIDC_OWNER_GROUP"="homarr-owners";
       "NEXTAUTH_URL"="https://homarr.nixie.org";
+      "NODE_TLS_REJECT_UNAUTHORIZED" = "0";
     };
+    environmentFiles = [config.sops.templates."homarr.env".path];
     volumes = [
       "/home/styly/homarr/appdata:/appdata:rw"
     ];
@@ -51,7 +52,6 @@
   };
   systemd.services."podman-homarr" = {
     serviceConfig = {
-      User = "homarr";
       Restart = lib.mkOverride 90 "always";
     };
     after = [
