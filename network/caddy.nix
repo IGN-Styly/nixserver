@@ -45,6 +45,7 @@
         extraConfig = ''
           reverse_proxy 127.0.0.1:3000
          	tls internal
+          header Authorization "Basic bml4Om5peA=="
           forward_auth 127.0.0.1:9091 {
                           uri /api/authz/forward-auth
                           ## The following commented line is for configuring the Authelia URL in the proxy. We strongly suggest

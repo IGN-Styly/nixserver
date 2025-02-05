@@ -28,12 +28,12 @@
     image = "ghcr.io/homarr-labs/homarr:latest";
     environment = {
       "SECRET_ENCRYPTION_KEY" = "9b8bb4ade1712fef1dcb5cbaea2c0e8d253377c4376e62be4ee93e387cdbf89e";
-      "AUTH_PROVIDERS" = "oidc";
+      "AUTH_PROVIDERS" = "credentials,oidc";
       "AUTH_OIDC_ISSUER" = "https://auth.nixie.org";
       "AUTH_OIDC_CLIENT_NAME"="Authelia";
-      "AUTH_OIDC_AUTO_LOGIN"= "true";
-      "AUTH_OIDC_ADMIN_GROUP"="homarr-admins";
-      "AUTH_OIDC_OWNER_GROUP"="homarr-owners";
+      "AUTH_OIDC_AUTO_LOGIN"= "false";
+      "AUTH_OIDC_ADMIN_GROUP"="admins";
+      "AUTH_OIDC_OWNER_GROUP"="admins";
       "NEXTAUTH_URL"="https://homarr.nixie.org";
       "NODE_TLS_REJECT_UNAUTHORIZED" = "0";
     };

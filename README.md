@@ -4,7 +4,7 @@ Also includes a simple bash script to be able to update/iterate over this cfg.
 ## Network:
   - [x] caddy // Still Mising other services
   - [ ] adguard
-  - [ ] homarr
+  - [x] homarr
   - [x] authelia
   - [ ] Gatus
   - [ ] vaultwarden
