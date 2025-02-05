@@ -3,7 +3,7 @@
    # ./deluge.nix
     #./radarr.nix
     #./sonarr.nix
-    ./jackett.nix
+    ./prowlarr.nix
     #./jellyfin.nix
    # ./overseerr.nix
   ];

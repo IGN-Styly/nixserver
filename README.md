@@ -10,7 +10,7 @@ Also includes a simple bash script to be able to update/iterate over this cfg.
   - [ ] vaultwarden
 ## Media
   - [ ] jellyfin
-  - [ ] jackett
+  - [x] prowlarr // Missing reproducibility
   - [ ] deluge
   - [ ] overseerr
   - [ ] sonarr
@@ -22,3 +22,11 @@ Also includes a simple bash script to be able to update/iterate over this cfg.
 - [ ] Add All modules
 - [ ] Modularize secrets
 - [ ] Modularize uri
+
+# Caveats
+Prowlarr is not reproducible, it requires a manual step to get the API key. And auth working.
+```xml
+<AuthenticationMethod>External</AuthenticationMethod>
+```
+Homarr is also not fully reproducible, it requires a manual step to get the Integrations working.
+And Setup the dashboard.
