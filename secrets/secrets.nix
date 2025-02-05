@@ -4,10 +4,27 @@
   lib,
   ...
 }: {
-
+  imports = [
+    ../config.nix
+  ];
 config = {
     sops = {
       templates = {
+        "authelia.yaml" = {
+          owner = "authelia-main";
+          content = ''
+            users:
+                styly:
+                    disabled: false
+                    displayname: "${config.nixserver.displayname}"
+                    password: "${config.sops.placeholder.autheliaHashedPassword}"
+                    email: ${config.nixserver.email}
+                    groups:
+                        - admin
+                        - dev
+
+          '';
+        };
         "homarr.env" = {
           mode = "0777";
           content = ''
@@ -17,6 +34,9 @@ config = {
         };
       };
       secrets = {
+        autheliaHashedPassword = {
+          owner="authelia-main";
+        };
         jwtSecret = {
           group="keys";
           mode="0777";
