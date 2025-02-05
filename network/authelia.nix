@@ -12,8 +12,7 @@
   environment.systemPackages = with pkgs; [
     authelia
   ];
-  config.nixserver.email = "claudiotorresptpt@gmail.com";
-  config.nixserver.displayname = "Styly";
+
   services.authelia.instances.main.secrets.jwtSecretFile = config.sops.secrets."jwtSecret".path;
   services.authelia.instances.main.secrets.storageEncryptionKeyFile = config.sops.secrets."cryptKey".path;
   services.authelia.instances.main = {
@@ -132,6 +131,7 @@
               name = "internal";
               networks = [
                 "127.0.0.1/8"
+                "10.89.0.1/24"
                 ];
             }
           ];
