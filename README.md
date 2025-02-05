@@ -5,7 +5,7 @@ Also includes a simple bash script to be able to update/iterate over this cfg.
   - [x] caddy // Still Mising other services
   - [ ] adguard
   - [x] homarr
-  - [x] authelia
+  - [x] authelia // Generate File from user given secret credentials
   - [ ] Gatus
   - [ ] vaultwarden
 ## Media
