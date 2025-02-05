@@ -10,6 +10,7 @@
   imports = [
     ./secrets/secrets.nix
     ./network/network.nix
+    ./media/media.nix
     ./dev/nh.nix
     ./config.nix
   ];
