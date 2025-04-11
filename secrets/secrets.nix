@@ -10,12 +10,6 @@
 config = {
     sops = {
       templates = {
-        "deluge"={
-          owner="deluge";
-          content = ''
-            nixie:${config.sops.placeholder.delugePassword}:10
-          '';
-        };
         "authelia.yaml" = {
           owner = "authelia-main";
           content = ''
@@ -40,9 +34,6 @@ config = {
         };
       };
       secrets = {
-        delugePassword = {
-          owner="deluge";
-        };
         autheliaHashedPassword = {
           owner="authelia-main";
         };
