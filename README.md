@@ -20,11 +20,16 @@ Also includes a simple bash script to be able to update/iterate over this cfg.
   - [ ] Coolify
 # TODO
 - [ ] Add All modules
+- [ ] SECURE SECRETS
 - [ ] Modularize secrets
 - [ ] Modularize uri
 
 # Caveats
 Prowlarr is not reproducible, it requires a manual step to get the API key. And auth working.
+```xml
+<AuthenticationMethod>External</AuthenticationMethod>
+```
+Sonarr is not reproducible, it requires a manual step to get the API key. And auth working.
 ```xml
 <AuthenticationMethod>External</AuthenticationMethod>
 ```

@@ -4,5 +4,6 @@
     ./homarr.nix
     ./caddy.nix
     ./adguard.nix
+    ./vaultwarden.nix
   ];
 }
