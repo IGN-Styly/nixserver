@@ -12,7 +12,7 @@
   environment.systemPackages = with pkgs; [
     authelia
   ];
-
+  systemd.services.authelia-main.serviceConfig.Environment="X_AUTHELIA_CONFIG_FILTERS=template";
   services.authelia.instances.main.secrets.jwtSecretFile = config.sops.secrets."jwtSecret".path;
   services.authelia.instances.main.secrets.storageEncryptionKeyFile = config.sops.secrets."cryptKey".path;
   services.authelia.instances.main = {

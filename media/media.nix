@@ -15,13 +15,6 @@
       mediaDir = "/data/media";
       stateDir = "/data/media/.state/nixarr";
 
-      vpn = {
-            enable = false;
-            # WARNING: This file must _not_ be in the config git directory
-            # You can usually get this wireguard file from your VPN provider
-            # wgConf = "/data/.secret/wg.conf";
-          };
-
       jellyfin = {
         enable = true;
         # These options set up a nginx HTTPS reverse proxy, so you can access
@@ -31,7 +24,6 @@
 
       transmission = {
         enable = true;
-        vpn.enable = true;
         peerPort = 50000; # Set this to the port forwarded by your VPN
       };
 

@@ -59,6 +59,7 @@ config = {
         };
         pKey = {
           owner="authelia-main";
+          mode="0777";
           group="keys";
         };
       };
