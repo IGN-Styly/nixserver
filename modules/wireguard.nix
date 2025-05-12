@@ -23,7 +23,7 @@
       # Allowed peers
       peers = [
         {
-          publicKey = "PEER_PUBLIC_KEY_GOES_HERE";
+          publicKey = "di5r5DQCMJ7Q1KPI1rmxZgpawD4e0nkpqXglhizEo1s=";
           allowedIPs = [ "10.100.0.2/32" ];  # Each client gets one IP
         }
         # Add more peers as needed
