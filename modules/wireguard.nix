@@ -6,7 +6,7 @@
   # Enable IP forwarding (needed for VPN)
   networking.nat.enable = true;
   networking.nat.internalInterfaces = [ "wg0" ];
-  networking.nat.externalInterface = "eth0";  # Change to your real interface
+  networking.nat.externalInterface = "ens3";  # Change to your real interface
 
   # WireGuard server config
   networking.wireguard.interfaces = {
