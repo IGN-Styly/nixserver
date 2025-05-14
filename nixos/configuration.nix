@@ -10,6 +10,7 @@
       ./hardware-configuration.nix
       ../modules/wireguard.nix
       ../modules/auth/default.nix
+      ../secrets
 
     ];
 nix.settings.experimental-features = [ "nix-command" "flakes" ];

@@ -84,7 +84,6 @@ in
       environmentVariables = with config.sops; {
         AUTHELIA_AUTHENTICATION_BACKEND_LDAP_PASSWORD_FILE =
           secrets."nixie/authelia/lldap_authelia_password".path;
-        AUTHELIA_NOTIFIER_SMTP_PASSWORD_FILE = secrets.sendgrid-api-key-authelia.path;
       };
     };
     caddy = {
