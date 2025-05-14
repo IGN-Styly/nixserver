@@ -9,12 +9,14 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ../modules/wireguard.nix
+      ../modules/auth/default.nix
+
     ];
-# nix.settings.experimental-features = [ "nix-command" "flakes" ];
-services.openssh.passwordAuthentication = false;
+nix.settings.experimental-features = [ "nix-command" "flakes" ];
+services.openssh.settings.PasswordAuthentication = false;
   # Use the GRUB 2 boot loader.
   boot.loader.grub.enable = true;
-  boot.loader.grub.version = 2;
+
   # boot.loader.grub.efiSupport = true;
   # boot.loader.grub.efiInstallAsRemovable = true;
   # boot.loader.efi.efiSysMountPoint = "/boot/efi";
@@ -72,11 +74,12 @@ services.openssh.passwordAuthentication = false;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  # environment.systemPackages = with pkgs; [
-  #   vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #   wget
-  #   firefox
-  # ];
+  environment.systemPackages = with pkgs; [
+  compose2nix
+  age
+  sops
+
+  ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
