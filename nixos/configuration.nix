@@ -13,6 +13,7 @@
       ../secrets
       ../modules/postgres.nix
       ../modules/redis.nix
+      ../modules/adguard.nix
 
     ];
 nix.settings.experimental-features = [ "nix-command" "flakes" ];
