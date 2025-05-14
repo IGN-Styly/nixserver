@@ -1,0 +1,3 @@
+# NIXSERVER
+TODO:
+ - [ ] SMTP

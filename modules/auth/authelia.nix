@@ -8,13 +8,14 @@ in
     authelia.instances.nixie = {
       enable = true;
       settings = {
+
         theme = "auto";
         authentication_backend.ldap = {
           address = "ldap://localhost:3890";
-          base_dn = "dc=nixie,dc=cc";
+          base_dn = "dc=nixie,dc=org";
           users_filter = "(&({username_attribute}={input})(objectClass=person))";
           groups_filter = "(member={dn})";
-          user = "uid=authelia,ou=people,dc=nixie,dc=cc";
+          user = "uid=admin,ou=people,dc=nixie,dc=org";
         };
         access_control = {
           default_policy = "deny";
@@ -51,33 +52,40 @@ in
             }
           ];
         };
-
-        log.level = "info";
-        identity_providers.oidc = {
-          cors = {
-            endpoints = [ "token" ];
-            allowed_origins_from_client_redirect_uris = true;
-          };
-          authorization_policies.default = {
-            default_policy = "one_factor";
-            rules = [
-              {
-                policy = "deny";
-                subject = "group:lldap_strict_readonly";
-              }
-            ];
-          };
+        notifier= {
+            smtp = {
+                  address = "smtp://smtp.sendgrid.net:587";
+                  username = "apikey";
+                  sender = "admin@nixie.org";
+            };
+            disable_startup_check=true;
         };
+        log.level = "info";
+        # identity_providers.oidc = {
+        #   cors = {
+        #     endpoints = [ "token" ];
+        #     allowed_origins_from_client_redirect_uris = true;
+        #   };
+        #   authorization_policies.default = {
+        #     default_policy = "one_factor";
+        #     rules = [
+        #       {
+        #         policy = "deny";
+        #         subject = "group:lldap_strict_readonly";
+        #       }
+        #     ];
+        #   };
+        # };
         # Necessary for Caddy integration
         # See https://www.authelia.com/integration/proxies/caddy/#implementation
         server.endpoints.authz.forward-auth.implementation = "ForwardAuth";
       };
       # Templates don't work correctly when parsed from Nix, so our OIDC clients are defined here
-      settingsFiles = [ ./oidc_clients.yaml ];
+      #settingsFiles = [ ./oidc_clients.yaml ];
       secrets = with config.sops; {
         jwtSecretFile = secrets."nixie/authelia/jwt_secret".path;
-        oidcIssuerPrivateKeyFile = secrets."nixie/authelia/jwks".path;
-        oidcHmacSecretFile = secrets."nixie/authelia/hmac_secret".path;
+        #oidcIssuerPrivateKeyFile = secrets."nixie/authelia/jwks".path;
+        #oidcHmacSecretFile = secrets."nixie/authelia/hmac_secret".path;
         sessionSecretFile = secrets."nixie/authelia/session_secret".path;
         storageEncryptionKeyFile = secrets."nixie/authelia/storage_encryption_key".path;
       };

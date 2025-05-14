@@ -6,6 +6,7 @@
       enable = true;
       ensureDatabases = [
         "authelia-nixie"
+        "lldap"
       ];
       ensureUsers = [
         {

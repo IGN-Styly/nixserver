@@ -12,7 +12,8 @@ in
     lldap = {
       enable = true;
       settings = {
-        ldap_base_dn = "dc=nixie,dc=cc";
+        http_host= "10.100.0.1";
+        ldap_base_dn = "dc=nixie,dc=org";
         ldap_user_email = "admin@nixie.org";
         database_url = "postgresql://lldap@localhost/lldap?host=/run/postgresql";
       };

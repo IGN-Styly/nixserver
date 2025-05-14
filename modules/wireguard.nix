@@ -2,8 +2,8 @@
 
 {
   networking.firewall.enable = true;
-
   # Enable IP forwarding (needed for VPN)
+  networking.firewall.trustedInterfaces = [ "wg0" ];
   networking.nat.enable = true;
   networking.nat.internalInterfaces = [ "wg0" ];
   networking.nat.externalInterface = "ens3";  # Change to your real interface
