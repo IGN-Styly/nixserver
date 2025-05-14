@@ -1,8 +1,8 @@
 {pkgs, ...}: {
   services.adguardhome.enable = true;
-  services.adguardhome.mutableSettings = true;
+  services.adguardhome.mutableSettings = false;
 
-  caddy = {
+  services.caddy = {
     virtualHosts."adguard.nixie.org".extraConfig = ''
       reverse_proxy :3000
                	tls internal
@@ -14,6 +14,14 @@
 
   # TODO : make Domain and IP configurable
   services.adguardhome.settings = {
+    dns={
+      bootstrap_dns=[
+        "9.9.9.10"
+        "149.112.112.10"
+        "2620:fe::10"
+        "2620:fe::fe:10"
+      ];
+    };
     users = [
       {
         name = "nix";
