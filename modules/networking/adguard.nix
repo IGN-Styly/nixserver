@@ -6,7 +6,10 @@
     virtualHosts."adguard.nixie.org".extraConfig = ''
       reverse_proxy :3000
                	tls internal
-                header Authorization "Basic bml4Om5peA=="
+                forward_auth :9091 {
+                    uri /api/authz/forward-auth
+                    copy_headers Remote-User Remote-Groups Remote-Email Remote-Name
+                }
     '';};
 
 networking.nameservers = [ "1.1.1.1" "9.9.9.9" ];
@@ -14,6 +17,7 @@ networking.nameservers = [ "1.1.1.1" "9.9.9.9" ];
 
   # TODO : make Domain and IP configurable
   services.adguardhome.settings = {
+
     dns={
       bootstrap_dns=[
         "9.9.9.10"
@@ -23,10 +27,10 @@ networking.nameservers = [ "1.1.1.1" "9.9.9.9" ];
       ];
     };
     users = [
-      {
-        name = "nix";
-        password = "$2a$12$jTU7NIXWekw2SQisJAr9sOh3GC4lbkhFEZlEKVgM0/2Kpy3Arjrg6";
-      }
+      # {
+      #   name = "nix";
+      #   password = "$2a$12$jTU7NIXWekw2SQisJAr9sOh3GC4lbkhFEZlEKVgM0/2Kpy3Arjrg6";
+      # }
     ];
     filtering.rewrites = [
       {

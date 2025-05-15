@@ -96,6 +96,7 @@ in
     };
     caddy = {
       virtualHosts."auth.nixie.org".extraConfig = ''
+        tls internal
         reverse_proxy :9091
       '';
       # A Caddy snippet that can be imported to enable Authelia in front of a service
@@ -141,5 +142,6 @@ in
     "nixie/authelia/lldap_authelia_password".owner = authelia;
 
   };
+
 
 }

@@ -12,15 +12,6 @@
   services.caddy = {
     dataDir = "/var/lib/caddy";
     enable = true;
-    # globalConfig = ''
-
-    #   pki {
-    #     ca home {
-    #         name "My Home CA"
-    #     }
-    #   }
-
-    # '';
     virtualHosts = {
       "nixie.org" = {
         extraConfig = ''

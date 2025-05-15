@@ -15,7 +15,7 @@
       ../modules/redis.nix
       ../modules/networking/adguard.nix
       ../modules/networking/caddy.nix
-
+      ../modules/homarr.nix
     ];
 nix.settings.experimental-features = [ "nix-command" "flakes" ];
 services.openssh.settings.PasswordAuthentication = false;
