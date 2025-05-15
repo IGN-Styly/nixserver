@@ -9,6 +9,16 @@
     dockerCompat = true;
   };
 
+  services.caddy = {
+    virtualHosts."dash.nixie.org".extraConfig = ''
+      reverse_proxy :7575
+               	tls internal
+                forward_auth :9091 {
+                    uri /api/authz/forward-auth
+                    copy_headers Remote-User Remote-Groups Remote-Email Remote-Name
+                }
+    '';
+       };
 
   # Create the User
   users.users.homarr = {
@@ -16,17 +26,17 @@
     home = "/var/lib/homarr";
     createHome = true;
     group = "homarr";
+    extraGroups = ["authelia-nixie"];
   };
          users.groups.homarr = {};
 
-  # Enable container name DNS for all Podman networks.
 
-  networking.nameservers = [ "::1" "127.0.0.1" "1.1.1.1"];
   virtualisation.oci-containers.backend = "podman";
 
   # Containers
   virtualisation.oci-containers.containers."homarr" = {
     image = "ghcr.io/homarr-labs/homarr:latest";
+    extraOptions = [ "--dns=127.0.0.1" "--dns=::1" "--dns=1.1.1.1" ];
     environment = {
       "AUTH_PROVIDERS" = "credentials,oidc";
       "AUTH_OIDC_ISSUER" = "https://auth.nixie.org";
@@ -34,7 +44,8 @@
       "AUTH_OIDC_AUTO_LOGIN"= "false";
       "AUTH_OIDC_ADMIN_GROUP"="admins";
       "AUTH_OIDC_OWNER_GROUP"="admins";
-      "NEXTAUTH_URL"="https://homarr.nixie.org";
+      "AUTH_OIDC_FORCE_USERINFO"="true";
+      "NEXTAUTH_URL"="https://dash.nixie.org";
       "NODE_TLS_REJECT_UNAUTHORIZED" = "0";
     };
     environmentFiles = [config.sops.templates."homarr.env".path];
@@ -87,6 +98,7 @@
     sops.secrets = {
       "nixie/homarr/homarrSecretKey".owner = "homarr";
       "nixie/homarr/homarrSecret".owner = "homarr";
-      "nixie/homarr/homarrID".owner = "homarr";
+      "nixie/homarr/homarrID".group = "authelia-nixie";
+      "nixie/homarr/homarrSecretHashed".group = "authelia-nixie";
     };
 }

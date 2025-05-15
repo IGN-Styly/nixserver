@@ -10,9 +10,11 @@
                     uri /api/authz/forward-auth
                     copy_headers Remote-User Remote-Groups Remote-Email Remote-Name
                 }
-    '';};
+    '';
+       };
+networking.nameservers = [ "127.0.0.1" "::1" "1.1.1.1" "9.9.9.9" ];
 
-networking.nameservers = [ "1.1.1.1" "9.9.9.9" ];
+
 
 
   # TODO : make Domain and IP configurable

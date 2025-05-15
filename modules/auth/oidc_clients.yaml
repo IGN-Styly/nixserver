@@ -1,5 +1,19 @@
-# Hashed client secrets go here, and unhashed ones go in the client configurations
-
 identity_providers:
   oidc:
+    ## The other portions of the mandatory OpenID Connect 1.0 configuration go here.
+    ## See: https://www.authelia.com/c/oidc
     clients:
+      - client_id: {{ secret "/run/secrets/nixie/homarr/homarrID" | mindent 10 "|" | msquote }}
+        client_name: 'Homarr'
+        client_secret: {{ secret "/run/secrets/nixie/homarr/homarrSecretHashed" | mindent 10 "|" | msquote }}
+        public: false
+        authorization_policy: 'one_factor'
+        redirect_uris:
+          - 'https://homarr.nixie.org/api/auth/callback/oidc'
+        scopes:
+          - 'openid'
+          - 'profile'
+          - 'groups'
+          - 'email'
+        userinfo_signing_algorithm: none
+        token_endpoint_auth_method: 'client_secret_basic'

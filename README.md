@@ -1,6 +1,5 @@
 # NIXSERVER
 MVP(minimum viable product)
-Also includes a simple bash script to be able to update/iterate over this cfg.
 ## Network:
   - [x] caddy
   - [x] adguard
