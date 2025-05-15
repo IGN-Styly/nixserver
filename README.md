@@ -3,7 +3,7 @@ MVP(minimum viable product)
 ## Network:
   - [x] caddy
   - [x] adguard
-  - [ ] homarr
+  - [x] homarr
   - [x] authelia
   - [ ] Gatus
   - [ ] vaultwarden

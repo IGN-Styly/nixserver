@@ -9,7 +9,7 @@ identity_providers:
         public: false
         authorization_policy: 'one_factor'
         redirect_uris:
-          - 'https://homarr.nixie.org/api/auth/callback/oidc'
+          - 'https://dash.nixie.org/api/auth/callback/oidc'
         scopes:
           - 'openid'
           - 'profile'

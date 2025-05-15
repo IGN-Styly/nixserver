@@ -32,13 +32,17 @@
 
 
   virtualisation.oci-containers.backend = "podman";
+
+  networking.firewall.trustedInterfaces = [ "podman0" "cni-podman0" ];
+
+
   # Containers
   virtualisation.oci-containers.containers."homarr" = {
     image = "ghcr.io/homarr-labs/homarr:latest";
-    extraOptions = [ "--dns=10.88.0.1" "--dns=8.8.8.8" "--dns=1.1.1.1" "--network=bridge"];
+    extraOptions = [ "--dns=10.100.0.1" "--dns=8.8.8.8" "--dns=1.1.1.1" "--network=bridge"];
     environment = {
       "AUTH_PROVIDERS" = "credentials,oidc";
-      "AUTH_OIDC_ISSUER" = "https://10.88.0.1:9091";
+      "AUTH_OIDC_ISSUER" = "https://auth.nixie.org";
       "AUTH_OIDC_CLIENT_NAME"="Authelia";
       "AUTH_OIDC_AUTO_LOGIN"= "false";
       "AUTH_OIDC_ADMIN_GROUP"="admins";
@@ -46,6 +50,7 @@
       "AUTH_OIDC_FORCE_USERINFO"="true";
       "NEXTAUTH_URL"="https://dash.nixie.org";
       "NODE_TLS_REJECT_UNAUTHORIZED" = "0";
+      "AUTH_LOGOUT_REDIRECT_URL"="https://auth.nixie.org/logout";
     };
     environmentFiles = [config.sops.templates."homarr.env".path];
     volumes = [
@@ -97,7 +102,7 @@
     sops.secrets = {
       "nixie/homarr/homarrSecretKey".owner = "homarr";
       "nixie/homarr/homarrSecret".owner = "homarr";
-      "nixie/homarr/homarrID".group = "authelia-nixie";
-      "nixie/homarr/homarrSecretHashed".group = "authelia-nixie";
+      "nixie/homarr/homarrID"={owner="authelia-nixie";mode="0440";};
+      "nixie/homarr/homarrSecretHashed"={owner="authelia-nixie";mode="0440";};
     };
 }

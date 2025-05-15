@@ -81,11 +81,11 @@ in
         server.endpoints.authz.forward-auth.implementation = "ForwardAuth";
       };
       # Templates don't work correctly when parsed from Nix, so our OIDC clients are defined here
-      #settingsFiles = [ ./oidc_clients.yaml ];
+      settingsFiles = [ ./oidc_clients.yaml ];
       secrets = with config.sops; {
         jwtSecretFile = secrets."nixie/authelia/jwt_secret".path;
-        #oidcIssuerPrivateKeyFile = secrets."nixie/authelia/jwks".path;
-        #oidcHmacSecretFile = secrets."nixie/authelia/hmac_secret".path;
+        oidcIssuerPrivateKeyFile = secrets."nixie/authelia/jwks".path;
+        oidcHmacSecretFile = secrets."nixie/authelia/hmac_secret".path;
         sessionSecretFile = secrets."nixie/authelia/session_secret".path;
         storageEncryptionKeyFile = secrets."nixie/authelia/storage_encryption_key".path;
       };

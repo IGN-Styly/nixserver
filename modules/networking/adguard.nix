@@ -1,7 +1,6 @@
 {pkgs, ...}: {
   services.adguardhome.enable = true;
   services.adguardhome.mutableSettings = false;
-
   services.caddy = {
     virtualHosts."adguard.nixie.org".extraConfig = ''
       reverse_proxy :3000
@@ -19,7 +18,6 @@ networking.nameservers = [ "127.0.0.1" "::1" "1.1.1.1" "9.9.9.9" ];
 
   # TODO : make Domain and IP configurable
   services.adguardhome.settings = {
-
     dns={
       bootstrap_dns=[
         "9.9.9.10"

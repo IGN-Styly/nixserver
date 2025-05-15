@@ -15,7 +15,7 @@
     virtualHosts = {
       "nixie.org" = {
         extraConfig = ''
-          redir https://homarr.nixie.org
+          redir https://dash.nixie.org
           tls internal
         '';
       };
