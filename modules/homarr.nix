@@ -41,10 +41,10 @@
     image = "ghcr.io/homarr-labs/homarr:latest";
     extraOptions = [ "--dns=10.100.0.1" "--dns=8.8.8.8" "--dns=1.1.1.1" "--network=bridge"];
     environment = {
-      "AUTH_PROVIDERS" = "credentials,oidc";
+      "AUTH_PROVIDERS" = "oidc";
       "AUTH_OIDC_ISSUER" = "https://auth.nixie.org";
       "AUTH_OIDC_CLIENT_NAME"="Authelia";
-      "AUTH_OIDC_AUTO_LOGIN"= "false";
+      "AUTH_OIDC_AUTO_LOGIN"= "true";
       "AUTH_OIDC_ADMIN_GROUP"="admins";
       "AUTH_OIDC_OWNER_GROUP"="admins";
       "AUTH_OIDC_FORCE_USERINFO"="true";
