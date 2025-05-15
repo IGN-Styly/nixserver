@@ -14,6 +14,7 @@
       ../modules/postgres.nix
       ../modules/redis.nix
       ../modules/networking/adguard.nix
+      ../modules/networking/caddy.nix
 
     ];
 nix.settings.experimental-features = [ "nix-command" "flakes" ];

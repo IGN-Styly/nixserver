@@ -9,7 +9,7 @@
                 header Authorization "Basic bml4Om5peA=="
     '';};
 
-
+networking.nameservers = [ "1.1.1.1" "9.9.9.9" ];
 
 
   # TODO : make Domain and IP configurable
@@ -28,7 +28,7 @@
         password = "$2a$12$jTU7NIXWekw2SQisJAr9sOh3GC4lbkhFEZlEKVgM0/2Kpy3Arjrg6";
       }
     ];
-    rewrites = [
+    filtering.rewrites = [
       {
         domain = "nixie.org";
         answer = "10.100.0.1";
