@@ -14,9 +14,10 @@
   users.users.homarr = {
     isSystemUser = true;
     home = "/var/lib/homarr";
-    group = "keys";
     createHome = true;
+    group = "homarr";
   };
+         users.groups.homarr = {};
 
   # Enable container name DNS for all Podman networks.
 
@@ -38,27 +39,23 @@
     };
     environmentFiles = [config.sops.templates."homarr.env".path];
     volumes = [
-      "/home/styly/homarr/appdata:/appdata:rw"
+      "/var/lib/homarr/appdata:/appdata:rw"
     ];
     ports = [
       "7575:7575/tcp"
     ];
     log-driver = "journald";
-    extraOptions = [
-      "--network-alias=homarr"
-      "--network=homarr_default"
-    ];
+
   };
+  systemd.tmpfiles.rules = [
+     "d /var/lib/homarr/appdata 0755 homarr wheel -"
+   ];
   systemd.services."podman-homarr" = {
+
     serviceConfig = {
       Restart = lib.mkOverride 90 "always";
     };
-    after = [
-      "podman-network-homarr_default.service"
-    ];
-    requires = [
-      "podman-network-homarr_default.service"
-    ];
+
     partOf = [
       "podman-compose-homarr-root.target"
     ];
@@ -68,19 +65,7 @@
   };
 
   # Networks
-  systemd.services."podman-network-homarr_default" = {
-    path = [ pkgs.podman ];
-    serviceConfig = {
-      Type = "oneshot";
-      RemainAfterExit = true;
-      ExecStop = "podman network rm -f homarr_default";
-    };
-    script = ''
-      podman network inspect homarr_default || podman network create homarr_default
-    '';
-    partOf = [ "podman-compose-homarr-root.target" ];
-    wantedBy = [ "podman-compose-homarr-root.target" ];
-  };
+
 
   # Root service
   # When started, this will automatically create all resources and start
@@ -91,7 +76,7 @@
     };
     wantedBy = [ "multi-user.target" ];
   };
-  config.sops.templates."homarr.env"={
+  sops.templates."homarr.env"={
     owner="homarr";
     content = ''
               SECRET_ENCRYPTION_KEY=${config.sops.placeholder."nixie/homarr/homarrSecretKey"}
@@ -100,8 +85,8 @@
               '';
 };
     sops.secrets = {
-      "nixie/homarr/homarrSecretKey".owner = homarr;
-      "nixie/homarr/homarrSecret".owner = homarr;
-      "nixie/homarr/homarrID".owner = homarr;
+      "nixie/homarr/homarrSecretKey".owner = "homarr";
+      "nixie/homarr/homarrSecret".owner = "homarr";
+      "nixie/homarr/homarrID".owner = "homarr";
     };
 }
