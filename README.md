@@ -7,6 +7,8 @@ MVP(minimum viable product)
   - [x] authelia
   - [ ] Gatus
   - [ ] vaultwarden
+## Games
+  - [ ] Minecraft
 ## Media
   - [ ] jellyfin
   - [ ] jackett

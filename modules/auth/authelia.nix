@@ -8,7 +8,6 @@ in
     authelia.instances.nixie = {
       enable = true;
       settings = {
-
         theme = "auto";
         authentication_backend.ldap = {
           address = "ldap://localhost:3890";
@@ -40,6 +39,7 @@ in
           redis.host = "/var/run/redis-nixie/redis.sock";
           cookies = [
             {
+              default_redirection_url = "https://nixie.org";
               domain = "nixie.org";
               authelia_url = "https://auth.nixie.org";
               # The period of time the user can be inactive for before the session is destroyed
